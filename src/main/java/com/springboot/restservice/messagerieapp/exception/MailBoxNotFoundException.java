@@ -4,4 +4,8 @@ public class MailBoxNotFoundException extends RuntimeException {
     public MailBoxNotFoundException(String message) {
         super(message);
     }
+
+    public MailBoxNotFoundException(Long id) {
+        super("Boîte mail avec l'ID " + id + " introuvable");
+    }
 }

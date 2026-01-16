@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface MailBoxRepository extends JpaRepository<MailBox, Long> {
     Optional<MailBox> findById(Long id);
+    Optional<MailBox> findByAdresseEmail(String adresseEmail);
+    boolean existsByAdresseEmail(String adresseEmail);
 }

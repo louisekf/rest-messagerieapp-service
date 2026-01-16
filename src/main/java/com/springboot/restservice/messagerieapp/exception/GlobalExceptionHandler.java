@@ -26,14 +26,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(QuotaExceededException.class)
     public ResponseEntity<RestApiResponse<Void>> handleQuotaExceeded(QuotaExceededException ex) {
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.CONFLICT)
                 .body(RestApiResponse.error(ex.getMessage()));
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<RestApiResponse<Void>> handleIllegalArgument(IllegalArgumentException ex) {
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(RestApiResponse.error(ex.getMessage()));
     }
 
