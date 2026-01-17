@@ -13,7 +13,7 @@ public class MailBox {
     private Long id;
     private String proprietaire;
     private double capaciteMax;
-    private double espaceUtilise;
+    private Double espaceUtilise;
     private String adresseEmail;
     public MailBox() {}
 

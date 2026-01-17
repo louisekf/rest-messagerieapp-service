@@ -1,6 +1,7 @@
 package com.springboot.restservice.messagerieapp.service;
 
 import com.springboot.restservice.messagerieapp.dto.MailBoxDTO;
+import com.springboot.restservice.messagerieapp.dto.QuotaDTO;
 import com.springboot.restservice.messagerieapp.exception.MailBoxNotFoundException;
 import com.springboot.restservice.messagerieapp.mapper.MailBoxMapper;
 import com.springboot.restservice.messagerieapp.model.MailBox;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class MailBoxService {
     private final MailBoxRepository mailBoxRepository;
     private final MailBoxMapper mailBoxMapper;
+
 
     public MailBoxService(MailBoxRepository mailBoxRepository, MailBoxMapper mailBoxMapper) {
         this.mailBoxRepository = mailBoxRepository;
@@ -69,12 +71,21 @@ public class MailBoxService {
         }
         mailBoxRepository.deleteById(id);
     }
-
+/*
     public MailBoxDTO getQuota(Long id) {
         // Retourne simplement le MailboxDTO qui contient déjà toutes les infos de quota
         return getMailBox(id);
-    }
+    }*/
+    public QuotaDTO getQuota(Long id) {
+        MailBox mailbox = getMailboxEntityById(id);
+        double pourcentage = (mailbox.getEspaceUtilise() / mailbox.getCapaciteMax()) * 100;
 
+        return new QuotaDTO(
+                mailbox.getCapaciteMax(),
+                mailbox.getEspaceUtilise(),
+                pourcentage
+        );
+    }
     public boolean canAddMessage(Long mailboxId, double messageSizeInMo) {
         MailBox mailbox = getMailboxEntityById(mailboxId);
         return (mailbox.getEspaceUtilise() + messageSizeInMo) <= mailbox.getCapaciteMax();
@@ -87,11 +98,5 @@ public class MailBoxService {
         mailBoxRepository.save(mailbox);
     }
 
-    public double consulterEspaceUtilise(Long id) {
-        Optional<MailBox> mailBox = mailBoxRepository.findById(id);
-        if (mailBox.isPresent()) {
-            return mailBox.get().getEspaceUtilise();
-        }
-        return 0;
-    }
+
 }

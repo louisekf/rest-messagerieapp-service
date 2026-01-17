@@ -1,8 +1,10 @@
 package com.springboot.restservice.messagerieapp.controller;
 
 import com.springboot.restservice.messagerieapp.dto.MailBoxDTO;
+import com.springboot.restservice.messagerieapp.dto.QuotaDTO;
 import com.springboot.restservice.messagerieapp.dto.RestApiResponse;
 import com.springboot.restservice.messagerieapp.service.MailBoxService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,7 +21,7 @@ public class MailBoxController {
     }
 
     @PostMapping
-    public ResponseEntity<RestApiResponse<Void>> createMailBox(@Validated @RequestBody MailBoxDTO mailBoxDTO) {
+    public ResponseEntity<RestApiResponse<Void>> createMailBox(@Valid @RequestBody MailBoxDTO mailBoxDTO) {
         mailBoxService.createMailbox(mailBoxDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -51,8 +53,8 @@ public class MailBoxController {
     }
 
     @GetMapping("/{id}/quota")
-    public ResponseEntity<RestApiResponse<MailBoxDTO>> getQuota(@PathVariable Long id) {
-        MailBoxDTO quota = mailBoxService.getQuota(id);
+    public ResponseEntity<RestApiResponse<QuotaDTO>> getQuota(@PathVariable Long id) {
+        QuotaDTO quota = mailBoxService.getQuota(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

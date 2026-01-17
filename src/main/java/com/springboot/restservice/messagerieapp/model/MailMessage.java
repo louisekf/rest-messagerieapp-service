@@ -16,7 +16,7 @@ public class MailMessage {
     private String objet;
     private String contenu;
     private LocalDateTime dateEnvoi;
-    private boolean lu;
+    private Boolean lu;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mailbox_id")
@@ -83,11 +83,11 @@ public class MailMessage {
         this.dateEnvoi = dateEnvoi;
     }
 
-    public boolean isLu() {
+    public Boolean getLu() {
         return lu;
     }
 
-    public void setLu(boolean lu) {
+    public void setLu(Boolean lu) {
         this.lu = lu;
     }
 

@@ -17,7 +17,7 @@ public class MailMessageMapper {
                 mailMessage.getObjet(),
                 mailMessage.getContenu(),
                 mailMessage.getDateEnvoi(),
-                mailMessage.isLu()
+                mailMessage.getLu()
                 );
     }
     public MailMessage toEntity(MailMessageDTO dto) {
@@ -33,7 +33,11 @@ public class MailMessageMapper {
         if (dto.getDateEnvoi() != null) {
             mailMessage.setDateEnvoi(dto.getDateEnvoi());
         }
-        mailMessage.setLu(dto.isLu());
+        if (dto.getLu() == null) {
+            mailMessage.setLu(false);
+        } else {
+            mailMessage.setLu(dto.getLu());
+        }
 
         return mailMessage;
     }

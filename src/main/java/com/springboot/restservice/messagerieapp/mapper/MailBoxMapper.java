@@ -26,7 +26,11 @@ public class MailBoxMapper {
         mailbox.setAdresseEmail(dto.getAdresseEmail());
         mailbox.setProprietaire(dto.getProprietaire());
         mailbox.setCapaciteMax(dto.getCapaciteMax());
-        mailbox.setEspaceUtilise(dto.getEspaceUtilise());
+        if (dto.getEspaceUtilise() == null) {
+            mailbox.setEspaceUtilise(0.0);
+        } else {
+            mailbox.setEspaceUtilise(dto.getEspaceUtilise());
+        }
 
         return mailbox;
     }
@@ -38,7 +42,7 @@ public class MailBoxMapper {
         if (dto.getProprietaire() != null) {
             mailbox.setProprietaire(dto.getProprietaire());
         }
-        if (dto.getCapaciteMax() > 0) {
+        if (dto.getCapaciteMax() != null && dto.getCapaciteMax() > 0) {
             mailbox.setCapaciteMax(dto.getCapaciteMax());
         }
     }

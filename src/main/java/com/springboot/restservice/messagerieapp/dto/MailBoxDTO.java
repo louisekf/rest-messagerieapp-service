@@ -1,5 +1,6 @@
 package com.springboot.restservice.messagerieapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -15,14 +16,15 @@ public class MailBoxDTO {
     private String proprietaire;
 
     @Min(value = 1, message = "La capacité maximale doit être au moins 1 Mo")
-    private double capaciteMax;
+    private Double capaciteMax;
 
-    private double espaceUtilise;
+    private Double espaceUtilise;
+
 
     public MailBoxDTO() {
     }
 
-    public MailBoxDTO(Long id, String adresseEmail, String proprietaire, double capaciteMax, double espaceUtilise) {
+    public MailBoxDTO(Long id, String adresseEmail, String proprietaire, Double capaciteMax, Double espaceUtilise) {
         this.id = id;
         this.adresseEmail = adresseEmail;
         this.proprietaire = proprietaire;
@@ -55,19 +57,19 @@ public class MailBoxDTO {
         this.proprietaire = proprietaire;
     }
 
-    public double getCapaciteMax() {
+    public Double getCapaciteMax() {
         return capaciteMax;
     }
 
-    public void setCapaciteMax(double capaciteMax) {
+    public void setCapaciteMax(Double capaciteMax) {
         this.capaciteMax = capaciteMax;
     }
 
-    public double getEspaceUtilise() {
+    public Double getEspaceUtilise() {
         return espaceUtilise;
     }
 
-    public void setEspaceUtilise(double espaceUtilise) {
+    public void setEspaceUtilise(Double espaceUtilise) {
         this.espaceUtilise = espaceUtilise;
     }
 }

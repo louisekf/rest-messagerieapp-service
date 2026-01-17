@@ -22,12 +22,12 @@ public class MailMessageDTO{
     @NotBlank(message = "Le contenu est obligatoire")
     private String contenu;
     private LocalDateTime dateEnvoi;
-    private boolean lu;
+    private Boolean lu;
 
     public MailMessageDTO() {
     }
 
-    public MailMessageDTO(Long id, String expediteur, String destinataire, String objet, String contenu, LocalDateTime dateEnvoi, boolean lu) {
+    public MailMessageDTO(Long id, String expediteur, String destinataire, String objet, String contenu, LocalDateTime dateEnvoi, Boolean lu) {
         this.id = id;
         this.expediteur = expediteur;
         this.destinataire = destinataire;
@@ -85,11 +85,11 @@ public class MailMessageDTO{
         this.dateEnvoi = dateEnvoi;
     }
 
-    public boolean isLu() {
+    public Boolean getLu() {
         return lu;
     }
 
-    public void setLu(boolean lu) {
+    public void setLu(Boolean lu) {
         this.lu = lu;
     }
 }
